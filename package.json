@@ -1,13 +1,18 @@
 {
   "name": "starter-templates",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A registry of starter templates for create-xeikit-app CLI tool.",
+  "keywords": [
+    "xeikit"
+  ],
+  "author": "XeicuLy",
+  "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "packageManager": "pnpm@10.12.1"
+  "packageManager": "pnpm@10.12.1",
+  "volta": {
+    "node": "22.16.0",
+    "pnpm": "10.12.1"
+  }
 }
