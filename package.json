@@ -8,6 +8,7 @@
   "author": "XeicuLy",
   "license": "MIT",
   "scripts": {
+    "release": "changelogen --release --push",
     "prepare": "husky"
   },
   "devDependencies": {
