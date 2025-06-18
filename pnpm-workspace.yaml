@@ -2,4 +2,8 @@ packages:
   - packages/*
 
 onlyBuiltDependencies:
+  - '@biomejs/biome'
+  - '@parcel/watcher'
+  - '@tailwindcss/oxide'
+  - esbuild
   - unrs-resolver
