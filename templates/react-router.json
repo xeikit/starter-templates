@@ -1,0 +1,5 @@
+{
+  "name": "react-router",
+  "tar": "https://codeload.github.com/xeikit/starter-templates/tar.gz/refs/heads/main",
+  "subdir": "packages/react-router"
+}
