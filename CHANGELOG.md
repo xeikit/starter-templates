@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v1.0.2
+
+[compare changes](https://github.com/xeikit/starter-templates/compare/v1.0.1...v1.0.2)
+
+### ✨ Enhancements
+
+- Add nuxt3 template ([8302890](https://github.com/xeikit/starter-templates/commit/8302890))
+- Add React Router v7 template ([6bbe5e7](https://github.com/xeikit/starter-templates/commit/6bbe5e7))
+
+### 🔧 Chore
+
+- Update @biomejs/biome dependency to version 1.9.4 and adjust meta function parameter ([06badac](https://github.com/xeikit/starter-templates/commit/06badac))
+
+### ❤️ Contributors
+
+- XeicuLy ([@XeicuLy](https://github.com/XeicuLy))
+
 ## v1.0.1
 
 
