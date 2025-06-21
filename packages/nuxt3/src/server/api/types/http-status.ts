@@ -5,10 +5,12 @@
  * Constants and utility functions are located in constants/http-status.ts
  */
 
+import type { HTTP_STATUS_CODES } from '../types';
+
 /**
  * HTTP status code values
  */
-export type HttpStatusCode = 200 | 201 | 400 | 401 | 403 | 404 | 409 | 422 | 500 | 502 | 503;
+export type HttpStatusCode = (typeof HTTP_STATUS_CODES)[keyof typeof HTTP_STATUS_CODES];
 
 /**
  * HTTP status categories
