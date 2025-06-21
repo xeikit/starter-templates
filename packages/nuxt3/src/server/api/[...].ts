@@ -68,7 +68,16 @@ export default defineEventHandler(async (event) => {
   let requestBody: BodyInit | null = null;
   if (event.node.req.method !== 'GET' && event.node.req.method !== 'HEAD') {
     const rawBody = await readBody(event);
-    requestBody = rawBody ? JSON.stringify(rawBody) : null;
+    if (rawBody) {
+      // Handle different body types appropriately
+      if (typeof rawBody === 'string') {
+        requestBody = rawBody;
+      } else if (rawBody instanceof FormData || rawBody instanceof ArrayBuffer) {
+        requestBody = rawBody;
+      } else {
+        requestBody = JSON.stringify(rawBody);
+      }
+    }
   }
 
   // Create request for Hono
