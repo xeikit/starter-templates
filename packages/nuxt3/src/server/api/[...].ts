@@ -85,7 +85,7 @@ export default defineEventHandler(async (event) => {
     method: event.node.req.method || 'GET',
     headers: {
       ...getHeaders(event),
-      'content-type': getHeader(event, 'content-type') || 'application/json',
+      ...(getHeader(event, 'content-type') ? { 'content-type': getHeader(event, 'content-type') } : {}),
     },
     body: requestBody,
   });
