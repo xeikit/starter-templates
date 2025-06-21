@@ -9,5 +9,6 @@ export * from './types';
 export * from './constants/http-status';
 export * from './types/api-response';
 export * from './schemas/common';
+export * from './utils/api-response';
 export * from './utils/system-info';
 export * from './utils/text-formatting';
