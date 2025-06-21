@@ -5,7 +5,7 @@
  */
 
 import { describe, test, expect } from 'vitest';
-import { HTTP_STATUS, createApiResponse, createApiError } from '../types';
+import { HTTP_STATUS, createApiResponse, createApiError } from '@/server/api/types';
 
 describe('Types Module', () => {
   describe('HTTP_STATUS', () => {

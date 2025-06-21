@@ -14,7 +14,7 @@
     "lint:fix": "eslint . --fix",
     "lint:rule-check": "npx @eslint/config-inspector",
     "typecheck": "nuxi typecheck .",
-    "test": "vitest",
+    "test": "vitest --run",
     "test:ui": "vitest --ui --coverage",
     "test:coverage": "vitest --coverage",
     "prepare": "husky"

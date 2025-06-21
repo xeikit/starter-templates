@@ -6,7 +6,7 @@
 
 import { Hono } from 'hono';
 import { describe, test, expect, beforeEach } from 'vitest';
-import { healthRoutes } from '../../routes/health';
+import { healthRoutes } from '@/server/api/routes/health';
 
 describe('Health Routes', () => {
   let testApplication: Hono;

@@ -5,7 +5,7 @@
  */
 
 import { describe, test, expect } from 'vitest';
-import { apiConfig, getEnvironment, isProduction, isDevelopment } from '../config';
+import { apiConfig, getEnvironment, isProduction, isDevelopment } from '@/server/api/config';
 
 describe('API Config', () => {
   test('should have cors configuration', () => {
