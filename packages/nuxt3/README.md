@@ -26,7 +26,7 @@ This starter includes a pre-configured **Hono** integration for building fast an
 📖 **Choose Your Learning Path:**
 
 - 🇺🇸 **English**: [Getting Started](src/server/api/docs/en/getting-started.md) | [Complete Docs](src/server/api/README.md)
-- �🇵 **日本語**: [初学者ガイド](src/server/api/docs/ja/getting-started.md) | [完全ドキュメント](src/server/api/README.md)
+- 🇯🇵 **日本語**: [初学者ガイド](src/server/api/docs/ja/getting-started.md) | [完全ドキュメント](src/server/api/README.md)
 
 ## ✨ Setup
 
