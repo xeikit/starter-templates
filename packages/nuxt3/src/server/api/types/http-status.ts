@@ -5,7 +5,7 @@
  * Constants and utility functions are located in constants/http-status.ts
  */
 
-import type { HTTP_STATUS_CODES } from '../types';
+import type { HTTP_STATUS_CODES } from '../constants/http-status';
 
 /**
  * HTTP status code values
