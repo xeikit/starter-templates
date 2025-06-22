@@ -259,7 +259,6 @@ describe('src/helpers/test/mockedStore.ts', () => {
       const mockStore1 = mockedStore(useTestStore);
       const mockStore2 = mockedStore(useTestStore);
 
-      // 公式実装では同じストアインスタンスを共有する
       expect(mockStore1).toBeDefined();
       expect(mockStore2).toBeDefined();
       expect(mockStore1).toBe(mockStore2);

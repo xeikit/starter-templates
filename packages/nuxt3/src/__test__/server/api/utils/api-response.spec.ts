@@ -96,12 +96,10 @@ describe('src/server/api/utils/api-response.ts', () => {
       const errorMessage = 'Test error';
       const response = createErrorApiResponse(errorMessage);
 
-      // 動作を検証：タイプガードで正しく識別されるか
       expect(isErrorApiResponse(response)).toBe(true);
       expect(isSuccessApiResponse(response)).toBe(false);
       expect(isMessageApiResponse(response)).toBe(false);
 
-      // 機能を検証：エラーメッセージにアクセスできるか
       expect(response.error).toBe(errorMessage);
     });
   });
@@ -137,12 +135,10 @@ describe('src/server/api/utils/api-response.ts', () => {
       const message = 'Test message';
       const response = createMessageApiResponse(message);
 
-      // 動作を検証：タイプガードで正しく識別されるか
       expect(isMessageApiResponse(response)).toBe(true);
       expect(isSuccessApiResponse(response)).toBe(false);
       expect(isErrorApiResponse(response)).toBe(false);
 
-      // 機能を検証：メッセージにアクセスできるか
       expect(response.message).toBe(message);
     });
   });
@@ -153,7 +149,6 @@ describe('src/server/api/utils/api-response.ts', () => {
       const errorResponse = createErrorApiResponse('test error');
       const messageResponse = createMessageApiResponse('test message');
 
-      // 相互排他的な性質を検証（内部構造ではなく動作）
       expect(isSuccessApiResponse(successResponse)).toBe(true);
       expect(isErrorApiResponse(successResponse)).toBe(false);
       expect(isMessageApiResponse(successResponse)).toBe(false);
@@ -244,7 +239,6 @@ describe('src/server/api/utils/api-response.ts', () => {
         createSuccessApiResponse([]),
       ];
 
-      // 全て成功レスポンスとして識別されることを検証
       successResponses.forEach((response) => {
         expect(isSuccessApiResponse(response)).toBe(true);
         expect(isErrorApiResponse(response)).toBe(false);
@@ -253,7 +247,6 @@ describe('src/server/api/utils/api-response.ts', () => {
 
       const errorResponses = [createErrorApiResponse('error1'), createErrorApiResponse('error2')];
 
-      // 全てエラーレスポンスとして識別されることを検証
       errorResponses.forEach((response) => {
         expect(isErrorApiResponse(response)).toBe(true);
         expect(isSuccessApiResponse(response)).toBe(false);
@@ -262,7 +255,6 @@ describe('src/server/api/utils/api-response.ts', () => {
 
       const messageResponses = [createMessageApiResponse('message1'), createMessageApiResponse('message2')];
 
-      // 全てメッセージレスポンスとして識別されることを検証
       messageResponses.forEach((response) => {
         expect(isMessageApiResponse(response)).toBe(true);
         expect(isSuccessApiResponse(response)).toBe(false);

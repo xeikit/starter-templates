@@ -73,11 +73,9 @@ describe('src/server/api/utils/text-formatting.ts', () => {
 
       const formatted = formatBasicHealthStatusAsText(healthStatus);
 
-      // 可読性を検証（具体的な構造ではなく内容の存在）
       expect(typeof formatted).toBe('string');
       expect(formatted.length).toBeGreaterThan(0);
 
-      // 必要な情報が含まれていることを検証
       expect(formatted).toContain('Status');
       expect(formatted).toContain('ok');
       expect(formatted).toContain('Uptime');

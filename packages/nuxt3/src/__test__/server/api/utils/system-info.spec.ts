@@ -23,11 +23,9 @@ describe('src/server/api/utils/system-info.ts', () => {
       expect(typeof timestamp).toBe('string');
       expect(timestamp.length).toBeGreaterThan(0);
 
-      // パースできることを検証（具体的な形式ではなく有効性）
       const parsedDate = new Date(timestamp);
       expect(parsedDate.getTime()).not.toBeNaN();
 
-      // 現在時刻との合理的な近似性を検証
       const now = new Date();
       const timeDiff = Math.abs(now.getTime() - parsedDate.getTime());
       expect(timeDiff).toBeLessThan(5000); // 5秒以内
@@ -36,13 +34,11 @@ describe('src/server/api/utils/system-info.ts', () => {
     test('should provide consistent timestamp format for logging', () => {
       const timestamps = Array.from({ length: 5 }, () => getCurrentTimestamp());
 
-      // 全てが有効なタイムスタンプであることを検証
       timestamps.forEach((timestamp) => {
         expect(typeof timestamp).toBe('string');
         expect(new Date(timestamp).getTime()).not.toBeNaN();
       });
 
-      // 時系列順序を検証（実装の詳細ではなく動作）
       for (let i = 1; i < timestamps.length; i++) {
         const current = new Date(timestamps[i]).getTime();
         const previous = new Date(timestamps[i - 1]).getTime();
@@ -86,15 +82,13 @@ describe('src/server/api/utils/system-info.ts', () => {
       expect(typeof version).toBe('string');
       expect(version.length).toBeGreaterThan(0);
 
-      // バージョンとして有効な形式であることを検証（具体的な値ではなく）
-      expect(version).toMatch(/\d+\.\d+/); // 最低限のバージョン形式
+      expect(version).toMatch(/\d+\.\d+/);
     });
 
     test('should provide consistent version information', () => {
       const version1 = getNodeVersion();
       const version2 = getNodeVersion();
 
-      // 一貫性を検証
       expect(version1).toBe(version2);
       expect(typeof version1).toBe('string');
       expect(version1.length).toBeGreaterThan(0);
@@ -169,16 +163,13 @@ describe('src/server/api/utils/system-info.ts', () => {
     test('should provide logical memory usage values for monitoring', () => {
       const memoryInfo = getMemoryUsageInformation();
 
-      // 基本的な論理検証（具体的な値ではなく関係性）
       expect(memoryInfo.used).toBeGreaterThan(0);
       expect(memoryInfo.total).toBeGreaterThan(0);
       expect(memoryInfo.total).toBeGreaterThanOrEqual(memoryInfo.used);
 
-      // パーセンテージの論理検証
       expect(memoryInfo.percentage).toBeGreaterThan(0);
       expect(memoryInfo.percentage).toBeLessThanOrEqual(100);
 
-      // 数値の有効性検証
       expect(Number.isFinite(memoryInfo.used)).toBe(true);
       expect(Number.isFinite(memoryInfo.total)).toBe(true);
       expect(Number.isFinite(memoryInfo.percentage)).toBe(true);
