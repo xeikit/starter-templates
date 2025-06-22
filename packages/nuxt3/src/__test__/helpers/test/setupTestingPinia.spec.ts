@@ -30,9 +30,8 @@ describe('src/helpers/test/setupTestingPinia.ts', () => {
       const pinia = setupTestingPinia();
       const store = useTestStore(pinia);
 
-      expect(store.count).toBeGreaterThanOrEqual(0);
-      expect(typeof store.name).toBe('string');
-      expect(store.name.length).toBeGreaterThan(0);
+      expect(store.count).toBe(0);
+      expect(store.name).toBe('test');
     });
 
     test('should support store state mutations through actions', () => {
