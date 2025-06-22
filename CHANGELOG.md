@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.1.0
+
+[compare changes](https://github.com/xeikit/starter-templates/compare/v1.0.2...v1.1.0)
+
+### ✨ Enhancements
+
+- Add nuxt3 and react-router template files ([afcd91d](https://github.com/xeikit/starter-templates/commit/afcd91d))
+
+### ❤️ Contributors
+
+- XeicuLy ([@XeicuLy](https://github.com/XeicuLy))
+
 ## v1.0.2
 
 [compare changes](https://github.com/xeikit/starter-templates/compare/v1.0.1...v1.0.2)
