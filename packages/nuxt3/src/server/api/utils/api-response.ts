@@ -66,7 +66,7 @@ export function createSuccessApiResponseWithMessage<TData>(
  * @returns True if response contains data
  */
 export function isSuccessApiResponse<TData>(response: ApiResponse<TData>): response is SuccessApiResponse<TData> {
-  return response.data !== undefined;
+  return 'data' in response && response.data !== undefined;
 }
 
 /**
@@ -76,7 +76,7 @@ export function isSuccessApiResponse<TData>(response: ApiResponse<TData>): respo
  * @returns True if response contains error
  */
 export function isErrorApiResponse(response: ApiResponse): response is ErrorApiResponse {
-  return response.error !== undefined;
+  return 'error' in response && response.error !== undefined;
 }
 
 /**
@@ -86,5 +86,5 @@ export function isErrorApiResponse(response: ApiResponse): response is ErrorApiR
  * @returns True if response contains message
  */
 export function isMessageApiResponse(response: ApiResponse): response is MessageApiResponse {
-  return response.message !== undefined;
+  return 'message' in response && response.message !== undefined;
 }
