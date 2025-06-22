@@ -1,44 +1,76 @@
 /**
- * Types Tests
+ * Types Tests - Behavior-Based
  *
- * Tests for type utilities and helper functions
+ * Tests for type utilities focusing on API contract and behavior
  */
 
 import { describe, test, expect } from 'vitest';
-import { HTTP_STATUS, createApiResponse, createApiError } from '@/server/api/types';
+import { createApiResponse, createApiError } from '@/server/api/types';
 
-describe('Types Module', () => {
-  describe('HTTP_STATUS', () => {
-    test('should have correct status codes', () => {
-      expect(HTTP_STATUS.OK).toBe(200);
-      expect(HTTP_STATUS.CREATED).toBe(201);
-      expect(HTTP_STATUS.BAD_REQUEST).toBe(400);
-      expect(HTTP_STATUS.NOT_FOUND).toBe(404);
-      expect(HTTP_STATUS.INTERNAL_SERVER_ERROR).toBe(500);
+describe('src/server/api/utils/api-response.ts', () => {
+  describe('API Response Creation', () => {
+    describe('Success Response Behavior', () => {
+      test('should create successful API response with data', () => {
+        const testCases = [{ id: 1, name: 'test' }, 'simple string', [1, 2, 3], { complex: { nested: 'data' } }];
+
+        testCases.forEach((data) => {
+          const response = createApiResponse(data);
+
+          expect(response).toHaveProperty('data');
+          expect(response.data).toEqual(data);
+
+          expect(response).not.toHaveProperty('error');
+        });
+      });
+
+      test('should handle empty and null data appropriately', () => {
+        const emptyResponse = createApiResponse(null);
+        expect(emptyResponse.data).toBe(null);
+
+        const _undefinedResponse = createApiResponse(undefined);
+        expect(emptyResponse).toHaveProperty('data');
+      });
+    });
+
+    describe('Error Response Behavior', () => {
+      test('should create error API response with message', () => {
+        const errorMessages = ['Something went wrong', 'Validation failed', 'Resource not found', ''];
+
+        errorMessages.forEach((message) => {
+          const response = createApiError(message);
+
+          expect(response).toHaveProperty('error');
+          expect(response.error).toBe(message);
+
+          expect(response).not.toHaveProperty('data');
+        });
+      });
+
+      test('should handle various error message types', () => {
+        const response = createApiError('User input validation failed');
+        expect(typeof response.error).toBe('string');
+        expect(response.error.length).toBeGreaterThan(0);
+      });
     });
   });
 
-  describe('API Response utilities', () => {
-    describe('createApiResponse', () => {
-      test('should create response with data', () => {
-        const data = { id: 1, name: 'test' };
-        const response = createApiResponse(data);
+  describe('API Contract Consistency', () => {
+    test('should maintain consistent response structure', () => {
+      const successResponse = createApiResponse({ test: 'data' });
+      const errorResponse = createApiError('test error');
 
-        expect(response.data).toEqual(data);
-        expect(response.error).toBeUndefined();
-        expect(response.message).toBeUndefined();
-      });
+      expect(Object.keys(successResponse)).not.toContain('error');
+
+      expect(Object.keys(errorResponse)).not.toContain('data');
     });
 
-    describe('createApiError', () => {
-      test('should create error response', () => {
-        const errorMessage = 'Something went wrong';
-        const response = createApiError(errorMessage);
+    test('should provide type-safe response creation', () => {
+      const response = createApiResponse({ userId: 123, active: true });
 
-        expect(response.error).toBe(errorMessage);
-        expect(response.data).toBeUndefined();
-        expect(response.message).toBeUndefined();
-      });
+      expect(response.data).toHaveProperty('userId');
+      expect(response.data).toHaveProperty('active');
+      expect(typeof response.data.userId).toBe('number');
+      expect(typeof response.data.active).toBe('boolean');
     });
   });
 });

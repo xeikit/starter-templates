@@ -1,3 +1,4 @@
+import { defineStore } from 'pinia';
 import { describe, expect, test } from 'vitest';
 import { setupTestingPinia } from '@/helpers/test';
 
@@ -17,44 +18,92 @@ const useTestStore = defineStore('test', {
 });
 
 describe('src/helpers/test/setupTestingPinia.ts', () => {
-  test('creates a Pinia instance with empty initial state', () => {
-    const testingPinia = setupTestingPinia();
+  describe('Store Initialization', () => {
+    test('should provide functional store instance with default state', () => {
+      const pinia = setupTestingPinia();
+      const store = useTestStore(pinia);
 
-    expect(testingPinia).toBeDefined();
+      expect(store.count).toBe(0);
+      expect(store.name).toBe('test');
+    });
 
-    const testStore = useTestStore(testingPinia);
+    test('should support store state mutations through actions', () => {
+      const pinia = setupTestingPinia();
+      const store = useTestStore(pinia);
 
-    expect(testStore.count).toBe(0);
-    expect(testStore.name).toBe('test');
+      store.increment();
+      store.updateName('newName');
 
-    testStore.increment();
-    testStore.updateName('newName');
-
-    expect(testStore.count).toBe(1);
-    expect(testStore.name).toBe('newName');
+      expect(store.count).toBe(1);
+      expect(store.name).toBe('newName');
+    });
   });
 
-  test('creates a Pinia instance with custom initial state', () => {
-    const initialState = {
-      test: {
-        count: 5,
-        name: 'initialName',
-      },
-    };
+  describe('Custom Initial State', () => {
+    test('should accept and apply custom initial state', () => {
+      const customState = {
+        test: {
+          count: 5,
+          name: 'initialName',
+        },
+      };
 
-    const testingPinia = setupTestingPinia(initialState);
+      const pinia = setupTestingPinia(customState);
+      const store = useTestStore(pinia);
 
-    expect(testingPinia).toBeDefined();
+      expect(store.count).toBe(5);
+      expect(store.name).toBe('initialName');
+    });
 
-    const testStore = useTestStore();
+    test('should maintain action functionality with custom state', () => {
+      const customState = {
+        test: {
+          count: 10,
+          name: 'customName',
+        },
+      };
 
-    expect(testStore.count).toBe(5);
-    expect(testStore.name).toBe('initialName');
+      const pinia = setupTestingPinia(customState);
+      const store = useTestStore(pinia);
 
-    testStore.increment();
-    testStore.updateName('updatedName');
+      store.increment();
+      store.updateName('updatedName');
 
-    expect(testStore.count).toBe(6);
-    expect(testStore.name).toBe('updatedName');
+      expect(store.count).toBe(11);
+      expect(store.name).toBe('updatedName');
+    });
+  });
+
+  describe('Testing Environment Compatibility', () => {
+    test('should provide independent testing capabilities', () => {
+      const pinia1 = setupTestingPinia();
+      const pinia2 = setupTestingPinia();
+
+      expect(pinia1).not.toBe(pinia2);
+
+      const store1 = useTestStore(pinia1);
+      const store2 = useTestStore(pinia2);
+
+      store1.increment();
+      store1.updateName('store1');
+
+      expect(store1.count).toBe(1);
+      expect(store1.name).toBe('store1');
+
+      expect(typeof store2.count).toBe('number');
+      expect(typeof store2.name).toBe('string');
+    });
+
+    test('should create valid pinia instance for component testing', () => {
+      const pinia = setupTestingPinia();
+
+      expect(pinia).toBeDefined();
+      expect(typeof pinia).toBe('object');
+
+      const store = useTestStore(pinia);
+      expect(store).toBeDefined();
+      expect(typeof store.count).toBe('number');
+      expect(typeof store.name).toBe('string');
+    });
   });
 });
