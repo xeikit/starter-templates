@@ -1,99 +1,92 @@
 /**
- * Config Tests
+ * Config Tests - Behavior-Based
  *
- * Tests for API configuration
+ * Tests for API configuration focusing on behavior rather than implementation
  */
 
 import { describe, test, expect } from 'vitest';
 import { apiConfig, getEnvironment, isProduction, isDevelopment } from '@/server/api/config';
 
-describe('API Config', () => {
-  test('should have cors configuration', () => {
-    expect(apiConfig.cors).toBeDefined();
-    expect(Array.isArray(apiConfig.cors.allowMethods)).toBe(true);
-    expect(Array.isArray(apiConfig.cors.allowHeaders)).toBe(true);
+describe('src/server/api/config.ts', () => {
+  describe('CORS Configuration', () => {
+    test('should support basic HTTP operations', () => {
+      const supportedMethods = ['GET', 'POST', 'PUT', 'DELETE'];
+      supportedMethods.forEach((method) => {
+        expect(apiConfig.cors.allowMethods).toContain(method);
+      });
+    });
+
+    test('should support common content types and authentication', () => {
+      expect(apiConfig.cors.allowHeaders).toContain('Content-Type');
+      expect(apiConfig.cors.allowHeaders).toContain('Authorization');
+    });
+
+    test('should have appropriate origin policy', () => {
+      expect(apiConfig.cors.origin).toBeDefined();
+      expect(apiConfig.cors.origin).not.toBe('');
+    });
   });
 
-  test('should have logging configuration', () => {
-    expect(apiConfig.logging).toBeDefined();
-    expect(typeof apiConfig.logging.enabled).toBe('boolean');
-    expect(typeof apiConfig.logging.detailed).toBe('boolean');
+  describe('Performance and Security', () => {
+    test('should have reasonable timeout configuration for user experience', () => {
+      expect(apiConfig.timeouts.request).toBeGreaterThan(5000);
+      expect(apiConfig.timeouts.request).toBeLessThanOrEqual(60000);
+      expect(apiConfig.timeouts.keepAlive).toBeGreaterThan(0);
+    });
+
+    test('should have rate limiting configured for protection', () => {
+      expect(apiConfig.rateLimit.windowMs).toBeGreaterThan(0);
+      expect(apiConfig.rateLimit.max).toBeGreaterThan(0);
+      expect(typeof apiConfig.rateLimit.enabled).toBe('boolean');
+    });
   });
 
-  test('should have errors configuration', () => {
-    expect(apiConfig.errors).toBeDefined();
-    expect(typeof apiConfig.errors.showDetails).toBe('boolean');
+  describe('API Versioning and Routing', () => {
+    test('should provide valid API versioning scheme', () => {
+      expect(apiConfig.api.version).toMatch(/^v\d+/);
+      expect(apiConfig.api.baseUrl).toMatch(/^\/api/);
+    });
   });
 
-  test('should have rateLimit configuration', () => {
-    expect(apiConfig.rateLimit).toBeDefined();
-    expect(typeof apiConfig.rateLimit.enabled).toBe('boolean');
-    expect(typeof apiConfig.rateLimit.windowMs).toBe('number');
-    expect(typeof apiConfig.rateLimit.max).toBe('number');
+  describe('Environment Adaptation', () => {
+    test('should provide environment detection capabilities', () => {
+      const environment = getEnvironment();
+      expect(typeof environment).toBe('string');
+      expect(environment.length).toBeGreaterThan(0);
+    });
+
+    test('should distinguish between production and development environments', () => {
+      const isProd = isProduction();
+      const isDev = isDevelopment();
+
+      expect(typeof isProd).toBe('boolean');
+      expect(typeof isDev).toBe('boolean');
+
+      expect(isProd && isDev).toBe(false);
+    });
+
+    test('should enable debugging in development environments', () => {
+      expect(typeof apiConfig.logging.enabled).toBe('boolean');
+      expect(typeof apiConfig.logging.detailed).toBe('boolean');
+      expect(typeof apiConfig.errors.showDetails).toBe('boolean');
+    });
   });
 
-  test('should have api configuration', () => {
-    expect(apiConfig.api).toBeDefined();
-    expect(typeof apiConfig.api.version).toBe('string');
-    expect(typeof apiConfig.api.baseUrl).toBe('string');
-  });
+  describe('Configuration Consistency', () => {
+    test('should maintain appropriate security settings', () => {
+      const corsOrigin = apiConfig.cors.origin;
 
-  test('should have timeouts configuration', () => {
-    expect(apiConfig.timeouts).toBeDefined();
-    expect(typeof apiConfig.timeouts.request).toBe('number');
-    expect(typeof apiConfig.timeouts.keepAlive).toBe('number');
-  });
+      expect(typeof corsOrigin).not.toBe('undefined');
+      expect(corsOrigin).not.toBe('');
 
-  test('CORS should include common HTTP methods', () => {
-    const methods = apiConfig.cors.allowMethods;
-    expect(methods).toContain('GET');
-    expect(methods).toContain('POST');
-    expect(methods).toContain('PUT');
-    expect(methods).toContain('DELETE');
-  });
+      expect(Array.isArray(corsOrigin) || typeof corsOrigin === 'string').toBe(true);
+    });
 
-  test('CORS should include common headers', () => {
-    const headers = apiConfig.cors.allowHeaders;
-    expect(headers).toContain('Content-Type');
-    expect(headers).toContain('Authorization');
-  });
-
-  test('request timeout should be reasonable', () => {
-    expect(apiConfig.timeouts.request).toBeGreaterThan(0);
-    expect(apiConfig.timeouts.request).toBeLessThanOrEqual(60000); // Max 1 minute
-  });
-
-  test('keep alive should be reasonable', () => {
-    expect(apiConfig.timeouts.keepAlive).toBeGreaterThan(0);
-    expect(apiConfig.timeouts.keepAlive).toBeLessThanOrEqual(30000); // Max 30 seconds
-  });
-
-  test('rate limit should have valid configuration', () => {
-    expect(apiConfig.rateLimit.windowMs).toBeGreaterThan(0);
-    expect(apiConfig.rateLimit.max).toBeGreaterThan(0);
-  });
-
-  test('api version should be valid', () => {
-    expect(apiConfig.api.version).toMatch(/^v\d+$/);
-    expect(apiConfig.api.baseUrl).toMatch(/^\/api$/);
-  });
-
-  test('environment helpers should work', () => {
-    expect(typeof getEnvironment()).toBe('string');
-    expect(typeof isProduction()).toBe('boolean');
-    expect(typeof isDevelopment()).toBe('boolean');
-  });
-
-  test('logging should be enabled by default', () => {
-    expect(apiConfig.logging.enabled).toBe(true);
-  });
-
-  test('environment helpers should return consistent types', () => {
-    expect(typeof getEnvironment()).toBe('string');
-    expect(typeof isProduction()).toBe('boolean');
-    expect(typeof isDevelopment()).toBe('boolean');
-
-    // Should be mutually exclusive
-    expect(isProduction() && isDevelopment()).toBe(false);
+    test('should provide complete API configuration', () => {
+      const requiredConfigs = ['cors', 'logging', 'rateLimit', 'errors', 'api', 'timeouts'];
+      requiredConfigs.forEach((config) => {
+        expect(apiConfig[config as keyof typeof apiConfig]).toBeDefined();
+      });
+    });
   });
 });

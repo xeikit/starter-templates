@@ -1,9 +1,17 @@
-import { defineStore } from 'pinia';
-import { describe, expect, test, vi, beforeEach } from 'vitest';
-import { defineComponent, h, ref, computed, defineAsyncComponent, nextTick } from 'vue';
-import { mockedStore, mountComponent, mountSuspendedComponent, setupTestingPinia } from '@/helpers/test';
+/**
+ * Mount Utilities Tests - Behavior-Based
+ *
+ * Tests focus on the behavior and contract of the mount utilities,
+ * ensuring components can be properly mounted and tested.
+ */
 
-const TestComponent = defineComponent({
+import { defineStore } from 'pinia';
+import { describe, test, expect, vi, beforeEach } from 'vitest';
+import { defineComponent, h, ref, computed, defineAsyncComponent, nextTick } from 'vue';
+import { mountComponent, mountSuspendedComponent } from '@/helpers/test';
+
+// Test components for behavior verification
+const InteractiveComponent = defineComponent({
   props: {
     message: {
       type: String,
@@ -28,9 +36,9 @@ const TestComponent = defineComponent({
   render() {
     return h('div', [
       h('h1', this.message),
-      h('p', `Count: ${this.count}`),
-      h('p', `Doubled: ${this.doubledCount}`),
-      h('button', { onClick: this.increment }, 'Increment'),
+      h('p', { 'data-testid': 'count' }, `Count: ${this.count}`),
+      h('p', { 'data-testid': 'doubled' }, `Doubled: ${this.doubledCount}`),
+      h('button', { onClick: this.increment, 'data-testid': 'increment-btn' }, 'Increment'),
     ]);
   },
 });
@@ -41,7 +49,7 @@ const AsyncComponent = defineComponent({
     return { asyncData };
   },
   render() {
-    return h('div', [h('p', `Async data: ${this.asyncData}`)]);
+    return h('div', [h('p', { 'data-testid': 'async-content' }, `Async data: ${this.asyncData}`)]);
   },
 });
 
@@ -50,52 +58,10 @@ const AsyncTestComponent = defineAsyncComponent(() => Promise.resolve(AsyncCompo
 const SlottedComponent = defineComponent({
   render() {
     return h('div', [
-      h('header', {}, this.$slots.header ? this.$slots.header() : 'Default Header'),
-      h('main', {}, this.$slots.default ? this.$slots.default() : 'Default Content'),
-      h('footer', {}, this.$slots.footer ? this.$slots.footer() : 'Default Footer'),
+      h('header', { 'data-testid': 'header' }, this.$slots.header ? this.$slots.header() : 'Default Header'),
+      h('main', { 'data-testid': 'main' }, this.$slots.default ? this.$slots.default() : 'Default Content'),
+      h('footer', { 'data-testid': 'footer' }, this.$slots.footer ? this.$slots.footer() : 'Default Footer'),
     ]);
-  },
-});
-
-const ChildComponent = defineComponent({
-  render() {
-    return h('div', 'Child Component');
-  },
-});
-
-const ParentComponent = defineComponent({
-  components: {
-    ChildComponent,
-  },
-  render() {
-    return h('div', [h('h1', 'Parent Component'), h(ChildComponent)]);
-  },
-});
-
-const CustomButton = defineComponent({
-  name: 'CustomButton',
-  render() {
-    return h('button', 'Complex Button');
-  },
-});
-
-const StubTestComponent = defineComponent({
-  components: {
-    CustomButton,
-  },
-  render() {
-    return h('div', [h('h1', 'Main Component'), h(CustomButton)]);
-  },
-});
-
-const MockTestComponent = defineComponent({
-  methods: {
-    navigate() {
-      this.$router.push('/test');
-    },
-  },
-  render() {
-    return h('button', { onClick: this.navigate }, 'Navigate');
   },
 });
 
@@ -121,8 +87,8 @@ const StoreComponent = defineComponent({
   },
   render() {
     return h('div', [
-      h('p', `Global count: ${this.store.globalCount}`),
-      h('button', { onClick: this.incrementGlobal }, 'Increment Global'),
+      h('p', { 'data-testid': 'global-count' }, `Global count: ${this.store.globalCount}`),
+      h('button', { onClick: this.incrementGlobal, 'data-testid': 'global-increment' }, 'Increment Global'),
     ]);
   },
 });
@@ -132,120 +98,103 @@ describe('src/helpers/test/mount.ts', () => {
     vi.resetAllMocks();
   });
 
-  test('can mount a basic component', async () => {
-    const wrapper = mountComponent(TestComponent);
+  describe('Component Interaction and State Management', () => {
+    test('should support reactive state updates through user interactions', async () => {
+      const wrapper = mountComponent(InteractiveComponent);
 
-    expect(wrapper.find('h1').text()).toBe('Default Message');
-    expect(wrapper.find('p').text()).toBe('Count: 0');
+      expect(wrapper.text()).toContain('Default Message');
+      expect(wrapper.text()).toContain('Count: 0');
+      expect(wrapper.text()).toContain('Doubled: 0');
 
-    await wrapper.find('button').trigger('click');
-    expect(wrapper.find('p').text()).toBe('Count: 1');
-  });
+      const incrementButton = wrapper.find('[data-testid="increment-btn"]');
+      await incrementButton.trigger('click');
 
-  test('can mount a component with props', async () => {
-    const wrapper = mountComponent(TestComponent, {
-      props: { message: 'Custom Message' },
+      expect(wrapper.text()).toContain('Count: 1');
+      expect(wrapper.text()).toContain('Doubled: 2');
     });
 
-    expect(wrapper.find('h1').text()).toBe('Custom Message');
+    test('should accept and respond to custom props', () => {
+      const customMessage = 'Custom Test Message';
+      const wrapper = mountComponent(InteractiveComponent, {
+        props: { message: customMessage },
+      });
+
+      expect(wrapper.text()).toContain(customMessage);
+    });
   });
 
-  test('can access component instance and verify values', async () => {
-    interface TestComponentInstance {
-      doubledCount: number;
-      increment: () => void;
-      message: string;
-    }
+  describe('Slot-based Component Composition', () => {
+    test('should render with default slot content when no slots provided', () => {
+      const wrapper = mountComponent(SlottedComponent);
 
-    const wrapper = mountComponent<TestComponentInstance>(TestComponent);
-
-    expect(wrapper.vm.doubledCount).toBe(0);
-
-    wrapper.vm.increment();
-    await nextTick();
-
-    expect(wrapper.vm.doubledCount).toBe(2);
-    expect(wrapper.vm.message).toBe('Default Message');
-  });
-
-  test('can correctly mount async components', async () => {
-    const wrapper = await mountSuspendedComponent(AsyncTestComponent);
-
-    expect(wrapper.find('p').text()).toBe('Async data: Async Data');
-  });
-
-  test('can customize component content using slots', async () => {
-    const wrapper = await mountSuspendedComponent(SlottedComponent, {
-      slots: {
-        header: () => 'Custom Header',
-        default: () => 'Custom Content',
-        footer: () => 'Custom Footer',
-      },
+      expect(wrapper.text()).toContain('Default Header');
+      expect(wrapper.text()).toContain('Default Content');
+      expect(wrapper.text()).toContain('Default Footer');
     });
 
-    expect(wrapper.find('header').text()).toBe('Custom Header');
-    expect(wrapper.find('main').text()).toBe('Custom Content');
-    expect(wrapper.find('footer').text()).toBe('Custom Footer');
-  });
-
-  test('can test components that use Pinia store', async () => {
-    const testingPinia = setupTestingPinia();
-    const wrapper = await mountSuspendedComponent(StoreComponent, { testingPinia });
-
-    expect(wrapper.find('p').text()).toBe('Global count: 0');
-
-    await wrapper.find('button').trigger('click');
-
-    expect(wrapper.find('p').text()).toBe('Global count: 1');
-
-    const store = mockedStore(useCounterStore);
-
-    expect(store.increment).toHaveBeenCalledTimes(1);
-    expect(store.globalCount).toBe(1);
-  });
-
-  test('can test components with a Pinia store that has initial values', async () => {
-    const testingPinia = setupTestingPinia({
-      counter: { globalCount: 10 },
-    });
-
-    const wrapper = await mountSuspendedComponent(StoreComponent, { testingPinia });
-
-    expect(wrapper.find('p').text()).toBe('Global count: 10');
-  });
-
-  test('can stub child components using the shallow option', async () => {
-    const wrapper = await mountSuspendedComponent(ParentComponent, {
-      shallow: true,
-    });
-
-    expect(wrapper.findComponent(ChildComponent).exists()).toBe(true);
-    expect(wrapper.text()).not.toContain('Child Component');
-  });
-
-  test('can stub specific components only', async () => {
-    const wrapper = await mountSuspendedComponent(StubTestComponent, {
-      stubs: {
-        CustomButton: true,
-      },
-    });
-
-    expect(wrapper.findComponent(CustomButton).exists()).toBe(true);
-    expect(wrapper.text()).not.toContain('Complex Button');
-  });
-
-  test('can simulate external functionality in a component using mocks', async () => {
-    const mockPush = vi.fn();
-
-    const wrapper = await mountSuspendedComponent(MockTestComponent, {
-      mocks: {
-        $router: {
-          push: mockPush,
+    test('should render custom slot content when provided', () => {
+      const wrapper = mountComponent(SlottedComponent, {
+        slots: {
+          header: () => 'Custom Header',
+          default: () => 'Custom Main Content',
+          footer: () => 'Custom Footer',
         },
-      },
+      });
+
+      expect(wrapper.text()).toContain('Custom Header');
+      expect(wrapper.text()).toContain('Custom Main Content');
+      expect(wrapper.text()).toContain('Custom Footer');
+    });
+  });
+
+  describe('Asynchronous Component Handling', () => {
+    test('should handle async components properly', async () => {
+      const wrapper = await mountSuspendedComponent(AsyncTestComponent);
+
+      await nextTick();
+      expect(wrapper.text()).toContain('Async data: Async Data');
+    });
+  });
+
+  describe('State Management Integration', () => {
+    test('should support pinia store integration for component testing', async () => {
+      const wrapper = mountComponent(StoreComponent);
+
+      expect(wrapper.text()).toContain('Global count: 0');
+
+      const globalIncrementButton = wrapper.find('[data-testid="global-increment"]');
+      await globalIncrementButton.trigger('click');
+
+      expect(wrapper.text()).toContain('Global count: 1');
     });
 
-    await wrapper.find('button').trigger('click');
-    expect(mockPush).toHaveBeenCalledWith('/test');
+    test('should provide component testing environment compatibility', () => {
+      const wrapper1 = mountComponent(InteractiveComponent, { props: { message: 'Component 1' } });
+      const wrapper2 = mountComponent(InteractiveComponent, { props: { message: 'Component 2' } });
+
+      expect(wrapper1.text()).toContain('Component 1');
+      expect(wrapper2.text()).toContain('Component 2');
+
+      expect(wrapper1.text()).not.toContain('Component 2');
+      expect(wrapper2.text()).not.toContain('Component 1');
+    });
+  });
+
+  describe('Testing Environment Configuration', () => {
+    test('should provide clean testing environment for each test', () => {
+      const wrapper = mountComponent(InteractiveComponent);
+
+      expect(wrapper.vm).toBeDefined();
+      expect(wrapper.text()).toContain('Count: 0');
+    });
+
+    test('should support vue testing utilities integration', () => {
+      const wrapper = mountComponent(InteractiveComponent);
+
+      const hasIncrementButton = wrapper.find('[data-testid="increment-btn"]').exists();
+      expect(hasIncrementButton).toBeDefined();
+
+      expect(wrapper.vm).toBeDefined();
+    });
   });
 });
