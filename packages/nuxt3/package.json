@@ -10,13 +10,16 @@
     "postinstall": "nuxt prepare",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
+    "prettier:ci": "prettier --check --log-level warn .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:rule-check": "npx @eslint/config-inspector",
+    "lint:ci": "eslint .",
     "typecheck": "nuxi typecheck .",
     "test": "vitest --run",
     "test:ui": "vitest --ui --coverage",
     "test:coverage": "vitest --coverage",
+    "test:ci": "vitest --run --coverage",
     "prepare": "husky"
   },
   "dependencies": {
