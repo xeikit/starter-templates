@@ -47,7 +47,8 @@ honoApplication.notFound((context) => {
 // Handle application errors
 honoApplication.onError((error, context) => {
   consola.error('API Error:', error);
-  const errorResponse = createErrorApiResponse('Internal Server Error');
+  const errorMessage = apiConfig.errors.showDetails && error instanceof Error ? error.message : 'Internal Server Error';
+  const errorResponse = createErrorApiResponse(errorMessage);
   return context.json(errorResponse, HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR);
 });
 
