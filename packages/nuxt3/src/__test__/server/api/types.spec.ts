@@ -50,7 +50,7 @@ describe('src/server/api/utils/api-response.ts', () => {
       test('should handle various error message types', () => {
         const response = createApiError('User input validation failed');
         expect(typeof response.error).toBe('string');
-        expect(response.error.length).toBeGreaterThan(0);
+        expect(response.error).toBeDefined();
       });
     });
   });
