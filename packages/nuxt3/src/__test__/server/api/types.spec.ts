@@ -27,8 +27,9 @@ describe('src/server/api/utils/api-response.ts', () => {
         const emptyResponse = createApiResponse(null);
         expect(emptyResponse.data).toBe(null);
 
-        const _undefinedResponse = createApiResponse(undefined);
-        expect(emptyResponse).toHaveProperty('data');
+        const undefinedResponse = createApiResponse(undefined);
+        expect(undefinedResponse).toHaveProperty('data');
+        expect(undefinedResponse.data).toBe(undefined);
       });
     });
 
