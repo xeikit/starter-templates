@@ -43,7 +43,7 @@ export function getMemoryUsageInformation(): MemoryUsage {
   return {
     used: memoryUsage.heapUsed,
     total: memoryUsage.heapTotal,
-    percentage: Math.round((memoryUsage.heapUsed / memoryUsage.heapTotal) * 100),
+    percentage: memoryUsage.heapTotal > 0 ? Math.round((memoryUsage.heapUsed / memoryUsage.heapTotal) * 100) : 0,
   };
 }
 
