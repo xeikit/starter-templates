@@ -13,7 +13,8 @@
     "prettier:ci": "prettier --check --log-level warn .",
     "typecheck": "tsc --noEmit",
     "lint": "pnpm biome && pnpm prettier && pnpm typecheck",
-    "lint:fix": "pnpm biome:fix && pnpm prettier:fix && pnpm typecheck"
+    "lint:fix": "pnpm biome:fix && pnpm prettier:fix && pnpm typecheck",
+    "prepare": "husky"
   },
   "dependencies": {
     "@tanstack/react-router": "1.122.0",
@@ -26,8 +27,18 @@
     "@biomejs/biome": "1.9.4",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
+    "husky": "9.1.7",
+    "lint-staged": "16.1.2",
     "prettier": "3.5.3",
     "typescript": "5.8.3",
     "vite-tsconfig-paths": "5.1.4"
+  },
+  "lint-staged": {
+    "**/*.{css,js,ts,cjs,mjs,cts,mts,jsx,tsx}": [
+      "biome check --write --no-errors-on-unmatched"
+    ],
+    "**/*.{md,html,yaml,yml,json,jsonc}": [
+      "prettier --write"
+    ]
   }
 }
