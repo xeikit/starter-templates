@@ -4,7 +4,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build"
+    "build": "vite build",
+    "biome": "biome check .",
+    "biome:fix": "biome check --write .",
+    "biome:ci": "biome ci .",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "prettier:ci": "prettier --check --log-level warn .",
+    "typecheck": "tsc --noEmit",
+    "lint": "pnpm biome && pnpm prettier && pnpm typecheck",
+    "lint:fix": "pnpm biome:fix && pnpm prettier:fix && pnpm typecheck"
   },
   "dependencies": {
     "@tanstack/react-router": "1.122.0",
@@ -14,8 +23,10 @@
     "vite": "6.3.5"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
+    "prettier": "3.5.3",
     "typescript": "5.8.3",
     "vite-tsconfig-paths": "5.1.4"
   }
