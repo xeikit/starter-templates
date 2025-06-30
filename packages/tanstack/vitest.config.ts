@@ -14,9 +14,4 @@ export default defineConfig({
       reportsDirectory: './coverage',
     },
   },
-  resolve: {
-    alias: {
-      '@': `${__dirname}/app`,
-    },
-  },
 });
