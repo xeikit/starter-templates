@@ -24,6 +24,7 @@
     "@tanstack/react-start": "1.122.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "tailwindcss": "4.1.10",
     "vite": "6.3.5"
   },
   "devDependencies": {
