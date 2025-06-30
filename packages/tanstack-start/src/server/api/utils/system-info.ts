@@ -60,3 +60,29 @@ export function isDevelopmentEnvironment(): boolean {
 export function isProductionEnvironment(): boolean {
   return getCurrentEnvironment() === 'production';
 }
+
+/**
+ * Get comprehensive system information
+ */
+export function getSystemInfo(): {
+  nodeVersion: string;
+  platform: string;
+  arch: string;
+  environment: string;
+  uptime: number;
+} {
+  return {
+    nodeVersion: getNodeVersion(),
+    platform: process.platform,
+    arch: process.arch,
+    environment: getCurrentEnvironment(),
+    uptime: getSystemUptime(),
+  };
+}
+
+/**
+ * Get memory information (alias for getMemoryUsageInformation)
+ */
+export function getMemoryInfo(): MemoryUsage {
+  return getMemoryUsageInformation();
+}
