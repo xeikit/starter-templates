@@ -1,6 +1,51 @@
 # Changelog
 
 
+## v1.3.0
+
+[compare changes](https://github.com/xeikit/starter-templates/compare/v1.2.0...v1.3.0)
+
+### ✨ Enhancements
+
+- **tanstack:** Implement createRouter function and extend router interface ([ad7b297](https://github.com/xeikit/starter-templates/commit/ad7b297))
+- **tanstack:** Add initial router setup with RootComponent and routing structure ([31d66c9](https://github.com/xeikit/starter-templates/commit/31d66c9))
+- **tanstack:** Add route handling and file-based state management ([addc64c](https://github.com/xeikit/starter-templates/commit/addc64c))
+- **tanstack:** Add vitest configuration and testing scripts to package.json ([5fdbeeb](https://github.com/xeikit/starter-templates/commit/5fdbeeb))
+- **tanstack:** Add Tailwind CSS integration ([7bce893](https://github.com/xeikit/starter-templates/commit/7bce893))
+- **tanstack:** Add RootNotFound component for 404 error handling ([f33f6fb](https://github.com/xeikit/starter-templates/commit/f33f6fb))
+- **tanstack:** Add initial tanstack.json template configuration ([ce7d75a](https://github.com/xeikit/starter-templates/commit/ce7d75a))
+- Add settings.json for claude ([2ac9062](https://github.com/xeikit/starter-templates/commit/2ac9062))
+
+### 📝 Documentation
+
+- **tanstack:** Add README.md with project overview, setup instructions, and features ([cdd1daa](https://github.com/xeikit/starter-templates/commit/cdd1daa))
+
+### 🔧 Chore
+
+- **tanstack:** Add initial package.json configuration ([504d038](https://github.com/xeikit/starter-templates/commit/504d038))
+- **tanstack:** Add tsconfig.json with initial TypeScript configuration ([8dd642c](https://github.com/xeikit/starter-templates/commit/8dd642c))
+- **tanstack:** Add .gitignore file with initial configuration ([c7bd451](https://github.com/xeikit/starter-templates/commit/c7bd451))
+- **tanstack:** Update package.json to include module type and scripts ([afa7f45](https://github.com/xeikit/starter-templates/commit/afa7f45))
+- **tanstack:** Add Vite configuration file with TypeScript paths and TanStack plugin ([fd8b463](https://github.com/xeikit/starter-templates/commit/fd8b463))
+- **tanstack:** Add linter settings ([5f94fde](https://github.com/xeikit/starter-templates/commit/5f94fde))
+- **tanstack:** Add husky and lint-staged configuration for pre-commit hooks ([c276b01](https://github.com/xeikit/starter-templates/commit/c276b01))
+- Update settings.json to allow WebFetch for specified domains ([4e5659c](https://github.com/xeikit/starter-templates/commit/4e5659c))
+- Remove unused resolve alias configuration from vitest.config.ts ([01f7da4](https://github.com/xeikit/starter-templates/commit/01f7da4))
+- **tanstack:** Move dir ([24059b2](https://github.com/xeikit/starter-templates/commit/24059b2))
+- Rename tanstack package to tanstack-start and update babel dependencies ([24dd4e8](https://github.com/xeikit/starter-templates/commit/24dd4e8))
+
+### 🎨 Improvements
+
+- **tanstack:** Fix lint issues ([e5cd550](https://github.com/xeikit/starter-templates/commit/e5cd550))
+
+### 📦️ Dependencies
+
+- **tanstack:** Install dependencies ([0f077d1](https://github.com/xeikit/starter-templates/commit/0f077d1))
+
+### ❤️ Contributors
+
+- XeicuLy ([@XeicuLy](https://github.com/XeicuLy))
+
 ## v1.2.0
 
 [compare changes](https://github.com/xeikit/starter-templates/compare/v1.1.0...v1.2.0)
