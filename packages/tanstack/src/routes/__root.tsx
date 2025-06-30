@@ -11,6 +11,7 @@ export const Route = createRootRoute({
     ],
   }),
   component: RootComponent,
+  notFoundComponent: RootNotFound,
 });
 
 function RootComponent() {
@@ -18,6 +19,19 @@ function RootComponent() {
     <RootDocument>
       <Outlet />
     </RootDocument>
+  );
+}
+
+function RootNotFound() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">404 - Not Found</h1>
+        <a href="/" className="text-blue-600 hover:text-blue-800 underline">
+          Home
+        </a>
+      </div>
+    </div>
   );
 }
 
