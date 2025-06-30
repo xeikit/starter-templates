@@ -33,7 +33,7 @@ function Home() {
   return (
     <button
       type="button"
-      className='font-bold'
+      className="font-bold"
       onClick={() => {
         updateCount({ data: 1 }).then(() => {
           router.invalidate();
