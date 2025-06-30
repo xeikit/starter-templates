@@ -1,5 +1,5 @@
 {
-  "name": "tanstack",
+  "name": "tanstack-start",
   "tar": "https://codeload.github.com/xeikit/starter-templates/tar.gz/refs/heads/main",
-  "subdir": "packages/tanstack"
+  "subdir": "packages/tanstack-start"
 }
