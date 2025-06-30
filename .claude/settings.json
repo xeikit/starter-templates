@@ -8,7 +8,9 @@
       "Bash(ls:*)",
       "Bash(mkdir:*)",
       "Bash(grep:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:tanstack.com)"
     ],
     "deny": ["Bash(git:*)"]
   }
