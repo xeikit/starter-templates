@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.4.0
+
+[compare changes](https://github.com/xeikit/starter-templates/compare/v1.3.0...v1.4.0)
+
+### ✨ Enhancements
+
+- Update Nuxt4 and TanStack Start templates ([#12](https://github.com/xeikit/starter-templates/pull/12))
+
+### ❤️ Contributors
+
+- KAKI ([@XeicuLy](https://github.com/XeicuLy))
+
 ## v1.3.0
 
 [compare changes](https://github.com/xeikit/starter-templates/compare/v1.2.0...v1.3.0)

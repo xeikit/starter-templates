@@ -1,6 +1,6 @@
 {
   "name": "starter-templates",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A registry of starter templates for create-xeikit-app CLI tool.",
   "keywords": [
     "xeikit"
