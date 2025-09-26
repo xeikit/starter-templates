@@ -1,5 +1,5 @@
 {
-  "name": "nuxt3",
+  "name": "nuxt4",
   "tar": "https://codeload.github.com/xeikit/starter-templates/tar.gz/refs/heads/main",
-  "subdir": "packages/nuxt3"
+  "subdir": "packages/nuxt4"
 }
