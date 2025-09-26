@@ -3,15 +3,15 @@
 import { z } from 'zod';
 
 export const zGetApiHealthData = z.object({
-  body: z.optional(z.never()),
-  path: z.optional(z.never()),
-  query: z.optional(z.never()),
+    body: z.optional(z.never()),
+    path: z.optional(z.never()),
+    query: z.optional(z.never())
 });
 
 /**
  * システムの稼働状況とISO形式のタイムスタンプを含むJSONオブジェクトを返却
  */
 export const zGetApiHealthResponse = z.object({
-  status: z.string(),
-  timestamp: z.iso.datetime(),
+    status: z.string(),
+    timestamp: z.iso.datetime()
 });
