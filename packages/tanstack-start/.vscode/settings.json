@@ -2,15 +2,12 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
-    "source.organizeImports.biome": "explicit",
-    "quickfix.biome": "explicit"
+    "source.biome": "explicit"
   },
-  "[css][javascript][javascriptreact][typescript][typescriptreact]": {
+  "[javascript][javascriptreact][typescript][typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.configPath": "prettier.config.mjs",
-  "files.associations": {
-    "*.css": "tailwindcss"
-  }
+  "files.associations": { "*.css": "tailwindcss" }
 }
