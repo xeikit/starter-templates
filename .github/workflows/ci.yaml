@@ -13,12 +13,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  nuxt3-ci:
+  nuxt4-ci:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: packages/nuxt3
+        working-directory: packages/nuxt4
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
@@ -26,17 +26,56 @@ jobs:
       - name: Setup Node.js and install dependencies
         uses: ./.github/actions/node-install
 
+      - name: Setup Biome CLI
+        uses: biomejs/setup-biome@f382a98e582959e6aaac8e5f8b17b31749018780
+
+      - name: Execute Biome
+        run: pnpm biome:ci
+
       - name: Execute Prettier
         run: pnpm prettier:ci
 
       - name: Execute ESLint
-        run: pnpm lint:ci
+        run: pnpm eslint:ci
 
-      - name: Execute TypeScript type check
+      - name: Generate Types
+        run: pnpm generate-types:ci
+
+      - name: Execute TypeCheck
         run: pnpm typecheck
 
-      - name: Execute tests with coverage
-        run: pnpm test:ci
+      - name: Execute Vitest
+        run: pnpm test:coverage
+
+      - name: Execute Build
+        run: pnpm build
+  tanstack-ci:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/tanstack-start
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and install dependencies
+        uses: ./.github/actions/node-install
+
+      - name: Setup Biome CLI
+        uses: biomejs/setup-biome@f382a98e582959e6aaac8e5f8b17b31749018780
+
+      - name: Execute Biome
+        run: pnpm biome:ci
+
+      - name: Execute Prettier
+        run: pnpm prettier:ci
+
+      - name: Execute ESLint
+        run: pnpm eslint:ci
+
+      - name: Execute TypeCheck
+        run: pnpm typecheck
 
       - name: Execute Build
         run: pnpm build

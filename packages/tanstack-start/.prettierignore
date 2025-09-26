@@ -26,12 +26,7 @@ logs
 .env.*
 !.env.example
 
-# React Router
-/.react-router/
-/build/
-
 # Biome
-**/*.css
 **/*.js
 **/*.ts
 **/*.cjs
