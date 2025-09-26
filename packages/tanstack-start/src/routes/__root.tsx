@@ -33,7 +33,7 @@ function RootComponent() {
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="ja">
+    <html lang="en">
       <head>
         <HeadContent />
       </head>
