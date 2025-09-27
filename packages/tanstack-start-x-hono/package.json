@@ -1,0 +1,17 @@
+{
+  "name": "tanstack-start-x-hono-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --parallel run dev",
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter backend dev",
+    "build": "pnpm --recursive run build",
+    "build:frontend": "pnpm --filter frontend build",
+    "build:backend": "pnpm --filter backend build",
+    "lint": "pnpm --recursive run lint",
+    "lint:fix": "pnpm --recursive run lint:fix",
+    "generate-types": "pnpm --filter backend generate-types && pnpm lint:fix"
+  },
+  "packageManager": "pnpm@10.17.1"
+}

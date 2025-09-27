@@ -1,0 +1,30 @@
+name: 'Node Install'
+description: 'Setup Node.js and install dependencies'
+
+inputs:
+  pnpm-version:
+    description: 'The version of pnpm to install'
+    required: true
+  node-version:
+    description: 'The version of Node.js to use'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@d648c2dd069001a242c621c8306af467f150e99d
+      with:
+        version: ${{ inputs.pnpm-version }}
+
+    - name: Set Node.js version to ${{ inputs.node-version }}
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: pnpm
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile
+      env:
+        HUSKY: '0'
