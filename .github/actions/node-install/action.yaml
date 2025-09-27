@@ -27,6 +27,13 @@ runs:
 
     - name: Install dependencies
       shell: bash
-      run: pnpm install --frozen-lockfile
+      run: |
+        set -eu
+
+        if [ -f pnpm-workspace.yaml ] || [ -f pnpm-workspace.yml ]; then
+          PNPM_WORKSPACE_DIR="${PNPM_WORKSPACE_DIR:-.}" pnpm install --frozen-lockfile --recursive
+        else
+          pnpm install --frozen-lockfile
+        fi
       env:
         HUSKY: '0'
