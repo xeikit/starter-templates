@@ -1,6 +1,31 @@
 # Changelog
 
 
+## v1.5.0
+
+[compare changes](https://github.com/xeikit/starter-templates/compare/v1.4.0...v1.5.0)
+
+### ✨ Enhancements
+
+- **tanstack:** Add TanStack Start and Hono monorepo templates ([ad95327](https://github.com/xeikit/starter-templates/commit/ad95327))
+
+### 🩹 Fixes
+
+- Revert ci step ([184cee6](https://github.com/xeikit/starter-templates/commit/184cee6))
+
+### 📝 Documentation
+
+- **tanstack:** Update README with setup instructions and MCP setup details ([e15bb41](https://github.com/xeikit/starter-templates/commit/e15bb41))
+
+### 🤖 CI
+
+- Add CI workflow for TanStack Start with Hono integration ([01ecaf8](https://github.com/xeikit/starter-templates/commit/01ecaf8))
+- Enhance dependency installation for pnpm workspace support ([bef3b9a](https://github.com/xeikit/starter-templates/commit/bef3b9a))
+
+### ❤️ Contributors
+
+- XeicuLy ([@XeicuLy](https://github.com/XeicuLy))
+
 ## v1.4.0
 
 [compare changes](https://github.com/xeikit/starter-templates/compare/v1.3.0...v1.4.0)
