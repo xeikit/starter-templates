@@ -79,24 +79,3 @@ jobs:
 
       - name: Execute Build
         run: pnpm build
-  tanstack-x-hono-ci:
-    if: github.event.pull_request.draft == false
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/tanstack-start-x-hono
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js and install dependencies
-        uses: ./.github/actions/node-install
-
-      - name: Setup Biome CLI
-        uses: biomejs/setup-biome@f382a98e582959e6aaac8e5f8b17b31749018780
-
-      - name: Execute Linter
-        run: pnpm lint
-
-      - name: Execute Build
-        run: pnpm build
