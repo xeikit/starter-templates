@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.5.1
+
+[compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.0...v1.5.1)
+
+### 🎨 Improvements
+
+- Add templates json file for tanstack-start-x-hono ([bb6d627](https://github.com/xeikit/starter-templates/commit/bb6d627))
+
+### ❤️ Contributors
+
+- XeicuLy ([@XeicuLy](https://github.com/XeicuLy))
+
 ## v1.5.0
 
 [compare changes](https://github.com/xeikit/starter-templates/compare/v1.4.0...v1.5.0)
