@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.5.2
+
+[compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.1...v1.5.2)
+
+### 🔧 Chore
+
+- Remove unnecessary Bash commands and configuration files from settings ([a47a032](https://github.com/xeikit/starter-templates/commit/a47a032))
+
+### ❤️ Contributors
+
+- XeicuLy ([@XeicuLy](https://github.com/XeicuLy))
+
 ## v1.5.1
 
 [compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.0...v1.5.1)
