@@ -2,8 +2,3 @@ packages:
   - frontend
   - backend
   - shared
-
-onlyBuiltDependencies:
-  - esbuild
-  - sharp
-  - workerd

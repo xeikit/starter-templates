@@ -6,15 +6,7 @@
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
-    "biome": "biome check .",
-    "biome:fix": "biome check --write .",
-    "biome:ci": "biome ci .",
-    "prettier": "prettier --check .",
-    "prettier:fix": "prettier --write .",
-    "prettier:ci": "prettier --check --log-level warn .",
     "typecheck": "tsc --noEmit",
-    "lint": "pnpm biome && pnpm prettier && pnpm typecheck",
-    "lint:fix": "pnpm biome:fix && pnpm prettier:fix && pnpm typecheck",
     "generate-types": "openapi-ts"
   },
   "dependencies": {
@@ -25,10 +17,8 @@
     "zod": "4.1.11"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.4",
     "@hey-api/openapi-ts": "0.84.3",
     "@types/node": "24.5.2",
-    "prettier": "3.6.2",
     "typescript": "5.9.2",
     "wrangler": "4.40.2"
   }

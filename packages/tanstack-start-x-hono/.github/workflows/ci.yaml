@@ -18,12 +18,9 @@ env:
   PNPM_VERSION: 10.17.1
 
 jobs:
-  frontend-ci:
+  ci:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: frontend
     steps:
       - name: Checkout source code
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
