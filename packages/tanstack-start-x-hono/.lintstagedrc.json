@@ -1,0 +1,4 @@
+{
+  "**/*.{js,ts,cjs,mjs,cts,mts,jsx,tsx}": ["biome check --no-errors-on-unmatched", "eslint"],
+  "**/*.{css,scss,sass,less,md,html,yaml,yml,json,jsonc}": ["prettier --check"]
+}
