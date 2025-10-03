@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v1.5.3
+
+[compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.2...v1.5.3)
+
+### 🔧 Chore
+
+- Improve linter config ([36fbc5a](https://github.com/xeikit/starter-templates/commit/36fbc5a))
+
+### 📦️ Dependencies
+
+- Remove unused devDependencies from pnpm-lock.yaml ([9cd8d21](https://github.com/xeikit/starter-templates/commit/9cd8d21))
+- Update pnpm-lock.yaml ([e44217d](https://github.com/xeikit/starter-templates/commit/e44217d))
+
+### ❤️ Contributors
+
+- XeicuLy ([@XeicuLy](https://github.com/XeicuLy))
+
 ## v1.5.2
 
 [compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.1...v1.5.2)
