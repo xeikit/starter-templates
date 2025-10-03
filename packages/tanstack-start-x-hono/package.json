@@ -26,9 +26,6 @@
     "generate-types": "pnpm --filter backend generate-types && pnpm lint:fix",
     "prepare": "jiti .husky/install.mts"
   },
-  "dependencies": {
-    "consola": "3.4.2"
-  },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
     "@commitlint/cli": "19.8.1",
@@ -37,6 +34,7 @@
     "@types/eslint-plugin-tailwindcss": "3.17.0",
     "@types/node": "24.5.2",
     "commitlint-config-gitmoji": "2.3.1",
+    "consola": "3.4.2",
     "eslint": "9.36.0",
     "eslint-plugin-tailwindcss": "3.18.2",
     "globals": "16.4.0",
