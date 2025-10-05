@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v1.5.4
+
+[compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.3...v1.5.4)
+
+### 🩹 Fixes
+
+- Unnecessary option ([aee8b41](https://github.com/xeikit/starter-templates/commit/aee8b41))
+
+### 🔧 Chore
+
+- **tanstack-start:** Update project configuration and add husky hooks ([fed1135](https://github.com/xeikit/starter-templates/commit/fed1135))
+- Add consola dependency to backend and frontend package.json ([5d7507f](https://github.com/xeikit/starter-templates/commit/5d7507f))
+
+### 📦️ Dependencies
+
+- Update pnpm-lock.yaml ([a53cb7f](https://github.com/xeikit/starter-templates/commit/a53cb7f))
+
+### ❤️ Contributors
+
+- XeicuLy ([@XeicuLy](https://github.com/XeicuLy))
+
 ## v1.5.3
 
 [compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.2...v1.5.3)
