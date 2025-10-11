@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.5.5
+
+[compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.4...v1.5.5)
+
+### 📦️ Dependencies
+
+- Update dependencies ([daa2710](https://github.com/xeikit/starter-templates/commit/daa2710))
+
+### ❤️ Contributors
+
+- XeicuLy ([@XeicuLy](https://github.com/XeicuLy))
+
 ## v1.5.4
 
 [compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.3...v1.5.4)
