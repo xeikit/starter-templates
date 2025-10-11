@@ -10,16 +10,16 @@
     "generate-types": "openapi-ts"
   },
   "dependencies": {
-    "@hono/swagger-ui": "0.5.2",
-    "@hono/zod-openapi": "1.1.3",
-    "consola": "3.4.2",
-    "hono": "4.9.9",
-    "zod": "4.1.11"
+    "@hono/swagger-ui": "^0.5.2",
+    "@hono/zod-openapi": "^1.1.3",
+    "consola": "^3.4.2",
+    "hono": "^4.9.9",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
-    "@hey-api/openapi-ts": "0.84.3",
-    "@types/node": "24.5.2",
-    "typescript": "5.9.2",
-    "wrangler": "4.40.2"
+    "@hey-api/openapi-ts": "^0.84.3",
+    "@types/node": "^24.5.2",
+    "typescript": "^5.9.2",
+    "wrangler": "^4.40.2"
   }
 }
