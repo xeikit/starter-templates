@@ -14,8 +14,8 @@ on:
   workflow_dispatch:
 
 env:
-  NODE_VERSION: 22.20.0
-  PNPM_VERSION: 10.17.1
+  NODE_VERSION: 24.11.1
+  PNPM_VERSION: 10.24.0
 
 jobs:
   linter:
