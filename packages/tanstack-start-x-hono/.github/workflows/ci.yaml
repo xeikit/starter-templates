@@ -13,26 +13,23 @@ on:
       - ready_for_review
   workflow_dispatch:
 
-env:
-  NODE_VERSION: 22.20.0
-  PNPM_VERSION: 10.17.1
-
 jobs:
   ci:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    name: CI
     steps:
       - name: Checkout source code
-        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
       - name: Setup Node.js and install dependencies
         uses: ./.github/actions/node-install
-        with:
-          pnpm-version: ${{ env.PNPM_VERSION }}
-          node-version: ${{ env.NODE_VERSION }}
 
       - name: Setup Biome CLI
-        uses: biomejs/setup-biome@f382a98e582959e6aaac8e5f8b17b31749018780
+        uses: biomejs/setup-biome@454fa0d884737805f48d7dc236c1761a0ac3cc13 # v2.6.0
+
+      - name: Execute ESLint
+        run: pnpm eslint:ci
 
       - name: Execute Biome
         run: pnpm biome:ci
@@ -40,11 +37,5 @@ jobs:
       - name: Execute Prettier
         run: pnpm prettier:ci
 
-      - name: Execute ESLint
-        run: pnpm eslint:ci
-
       - name: Execute TypeCheck
         run: pnpm typecheck
-
-      - name: Execute Build
-        run: pnpm build

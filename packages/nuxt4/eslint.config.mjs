@@ -1,4 +1,3 @@
-import tailwind from 'eslint-plugin-tailwindcss';
 import a11y from 'eslint-plugin-vuejs-accessibility';
 import globals from 'globals';
 import withNuxt from './.nuxt/eslint.config.mjs';
@@ -20,6 +19,4 @@ export default withNuxt([
       'vue/no-multiple-template-root': 'off',
     },
   },
-])
-  .append(tailwind.configs['flat/recommended'])
-  .append(a11y.configs['flat/recommended']);
+]).append(a11y.configs['flat/recommended']);
