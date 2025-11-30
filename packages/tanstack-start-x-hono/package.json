@@ -5,6 +5,7 @@
     "dev": "pnpm --recursive run dev",
     "dev:frontend": "pnpm --filter ./apps/frontend dev",
     "dev:backend": "pnpm --filter ./apps/backend dev",
+    "build": "pnpm --filter ./apps/frontend build",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "eslint:ci": "eslint . --max-warnings 0",
