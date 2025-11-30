@@ -1,6 +1,29 @@
 # Changelog
 
 
+## v1.5.6
+
+[compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.5...v1.5.6)
+
+### 🔧 Chore
+
+- Add build command ([63e7f0e](https://github.com/xeikit/starter-templates/commit/63e7f0e))
+
+### 🎨 Improvements
+
+- Update tanstack-x-hono ([15c38a1](https://github.com/xeikit/starter-templates/commit/15c38a1))
+- Delete unnecessary config file ([c92ec33](https://github.com/xeikit/starter-templates/commit/c92ec33))
+- Replace @tailwind directives with @import in tailwind.css files ([4d93704](https://github.com/xeikit/starter-templates/commit/4d93704))
+
+### 📦️ Dependencies
+
+- Update dependencies ([ad8fc4f](https://github.com/xeikit/starter-templates/commit/ad8fc4f))
+- Update node and pnpm version ([99ec719](https://github.com/xeikit/starter-templates/commit/99ec719))
+
+### ❤️ Contributors
+
+- XeicuLy ([@XeicuLy](https://github.com/XeicuLy))
+
 ## v1.5.5
 
 [compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.4...v1.5.5)
