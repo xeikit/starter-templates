@@ -9,5 +9,15 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.configPath": "prettier.config.mjs",
-  "files.associations": { "*.css": "tailwindcss" }
+  "files.associations": { "*.css": "tailwindcss" },
+
+  "files.watcherExclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "search.exclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "files.readonlyInclude": {
+    "**/routeTree.gen.ts": true
+  }
 }
