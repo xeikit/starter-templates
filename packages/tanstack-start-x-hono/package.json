@@ -27,23 +27,21 @@
     "prepare": "jiti .husky/install.mts"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.5",
-    "@commitlint/cli": "19.8.1",
-    "@commitlint/types": "19.8.1",
-    "@eslint/js": "9.37.0",
-    "@types/eslint-plugin-tailwindcss": "3.17.0",
-    "@types/node": "24.7.1",
+    "@biomejs/biome": "2.3.8",
+    "@commitlint/cli": "20.1.0",
+    "@commitlint/types": "20.0.0",
+    "@eslint/js": "9.39.1",
+    "@types/node": "24.10.1",
     "commitlint-config-gitmoji": "2.3.1",
     "consola": "3.4.2",
-    "eslint": "9.37.0",
-    "eslint-plugin-tailwindcss": "3.18.2",
-    "globals": "16.4.0",
+    "eslint": "9.39.1",
+    "globals": "16.5.0",
     "husky": "9.1.7",
     "jiti": "2.6.1",
-    "lint-staged": "16.2.4",
-    "prettier": "3.6.2",
+    "lint-staged": "16.2.7",
+    "prettier": "3.7.3",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.46.0"
+    "typescript-eslint": "8.48.0"
   },
   "packageManager": "pnpm@10.17.1"
 }
