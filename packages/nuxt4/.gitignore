@@ -5,6 +5,8 @@
 .nitro
 .cache
 dist
+
+# Test coverage
 coverage
 
 # Node dependencies

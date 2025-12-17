@@ -1,29 +1,38 @@
 import { describe, expect, test } from 'vitest';
 import App from '@/app.vue';
-import { mountSuspendedComponent } from '@/helpers/test';
-
-const NuxtRouteAnnouncer = {
-  template: '<div id="nuxt-route-announcer"></div>',
-};
-const NuxtLoadingIndicator = {
-  template: '<div id="nuxt-loading-indicator"></div>',
-};
-const NuxtLayout = {
-  template: '<div id="nuxt-layout"><slot /></div>',
-};
-const NuxtPage = {
-  template: '<div id="nuxt-page"></div>',
-};
-
-const defaultStubs = { NuxtRouteAnnouncer, NuxtLoadingIndicator, NuxtLayout, NuxtPage };
+import { mountSuspendedComponent } from '@/helper/test';
 
 describe('app/app.vue', () => {
-  test('必要な子コンポーネントが揃っていること', async () => {
-    const wrapper = await mountSuspendedComponent(App, { stubs: defaultStubs });
+  test('includes route announcer for accessibility', async () => {
+    const wrapper = await mountSuspendedComponent(App);
 
-    expect(wrapper.findComponent(NuxtRouteAnnouncer).exists()).toBe(true);
-    expect(wrapper.findComponent(NuxtLoadingIndicator).exists()).toBe(true);
-    expect(wrapper.findComponent(NuxtLayout).exists()).toBe(true);
-    expect(wrapper.findComponent(NuxtPage).exists()).toBe(true);
+    expect(wrapper.findComponent({ name: 'NuxtRouteAnnouncer' }).exists()).toBe(true);
+  });
+
+  test('includes loading indicator', async () => {
+    const wrapper = await mountSuspendedComponent(App);
+
+    expect(wrapper.findComponent({ name: 'NuxtLoadingIndicator' }).exists()).toBe(true);
+  });
+
+  test('includes layout system', async () => {
+    const wrapper = await mountSuspendedComponent(App);
+
+    expect(wrapper.findComponent({ name: 'NuxtLayout' }).exists()).toBe(true);
+  });
+
+  test('includes page content', async () => {
+    const wrapper = await mountSuspendedComponent(App);
+
+    expect(wrapper.findComponent({ name: 'NuxtPage' }).exists()).toBe(true);
+  });
+
+  test('builds correct component hierarchy', async () => {
+    const wrapper = await mountSuspendedComponent(App);
+
+    const layout = wrapper.findComponent({ name: 'NuxtLayout' });
+
+    expect(layout.exists()).toBe(true);
+    expect(layout.findComponent({ name: 'NuxtPage' }).exists()).toBe(true);
   });
 });

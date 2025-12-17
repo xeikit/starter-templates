@@ -38,9 +38,6 @@ jobs:
       - name: Execute ESLint
         run: pnpm eslint:ci
 
-      - name: Generate Types
-        run: pnpm generate-types:ci
-
       - name: Execute TypeCheck
         run: pnpm typecheck
 
