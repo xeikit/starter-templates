@@ -1,3 +1,4 @@
+// @ts-check
 import a11y from 'eslint-plugin-vuejs-accessibility';
 import globals from 'globals';
 import withNuxt from './.nuxt/eslint.config.mjs';

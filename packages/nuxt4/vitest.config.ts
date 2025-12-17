@@ -14,7 +14,7 @@ export default defineConfig({
       provider: 'v8',
       reportsDirectory: './coverage',
       exclude: ['**/types/*'],
-      include: ['app/**/*', 'server/**/*', 'shared/**/*'],
+      include: ['app/**/*', 'server/**/*'],
     },
     projects: [
       {
