@@ -1,6 +1,30 @@
 # Changelog
 
 
+## v1.6.0
+
+[compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.7...v1.6.0)
+
+### ✨ Enhancements
+
+- Update nuxt4 template ([d8b1a0b](https://github.com/xeikit/starter-templates/commit/d8b1a0b))
+- Implement mountSuspendedComponent helper and update tests for app.vue ([12181a0](https://github.com/xeikit/starter-templates/commit/12181a0))
+
+### 🔧 Chore
+
+- Update dependencies ([476ec7e](https://github.com/xeikit/starter-templates/commit/476ec7e))
+- Add ci commands ([993b36b](https://github.com/xeikit/starter-templates/commit/993b36b))
+- Remove generate types step from CI workflow ([46b60d4](https://github.com/xeikit/starter-templates/commit/46b60d4))
+- Add unit tests for app.vue component ([de520ba](https://github.com/xeikit/starter-templates/commit/de520ba))
+
+### ✅ Tests
+
+- Add unit test ([c09412c](https://github.com/xeikit/starter-templates/commit/c09412c))
+
+### ❤️ Contributors
+
+- XeicuLy ([@XeicuLy](https://github.com/XeicuLy))
+
 ## v1.5.7
 
 [compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.6...v1.5.7)
