@@ -5,11 +5,11 @@ inputs:
   pnpm-version:
     description: 'The version of pnpm to install'
     required: false
-    default: 10.24.0
+    default: 10.26.0
   node-version:
     description: 'The version of Node.js to use'
     required: false
-    default: 24.11.1
+    default: 24.12.0
 
 runs:
   using: 'composite'
