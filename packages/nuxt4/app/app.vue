@@ -1,5 +1,9 @@
+<script setup lang="ts">
+const appId = useId();
+</script>
+
 <template>
-  <div>
+  <div :id="appId">
     <NuxtRouteAnnouncer />
     <NuxtLoadingIndicator />
     <NuxtLayout>
