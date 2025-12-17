@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.5.7
+
+[compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.6...v1.5.7)
+
+### 🔧 Chore
+
+- Update dependencies ([1c77081](https://github.com/xeikit/starter-templates/commit/1c77081))
+
+### ❤️ Contributors
+
+- XeicuLy ([@XeicuLy](https://github.com/XeicuLy))
+
 ## v1.5.6
 
 [compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.5...v1.5.6)
