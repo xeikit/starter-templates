@@ -1,4 +1,4 @@
-name: CI
+name: PR Checks
 
 on:
   pull_request:
@@ -73,6 +73,39 @@ jobs:
 
       - name: Execute TypeCheck
         run: pnpm typecheck
+
+      - name: Execute Build
+        run: pnpm build
+  tanstack-x-hono-ci:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/tanstack-start-x-hono
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and install dependencies
+        uses: ./.github/actions/node-install
+
+      - name: Setup Biome CLI
+        uses: biomejs/setup-biome@f382a98e582959e6aaac8e5f8b17b31749018780
+
+      - name: Execute Biome
+        run: pnpm biome:ci
+
+      - name: Execute Prettier
+        run: pnpm prettier:ci
+
+      - name: Execute ESLint
+        run: pnpm eslint:ci
+
+      - name: Execute TypeCheck
+        run: pnpm typecheck
+
+      - name: Execute Vitest
+        run: pnpm --filter frontend test:coverage
 
       - name: Execute Build
         run: pnpm build
