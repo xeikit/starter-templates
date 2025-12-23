@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v1.6.1
+
+[compare changes](https://github.com/xeikit/starter-templates/compare/v1.6.0...v1.6.1)
+
+### 🤖 CI
+
+- Update pnpm version to 10.26.1 and update action versions in CI workflow ([b8100dd](https://github.com/xeikit/starter-templates/commit/b8100dd))
+- Remove TypeCheck step from CI workflow ([b905a34](https://github.com/xeikit/starter-templates/commit/b905a34))
+
+### 📦️ Dependencies
+
+- Add lint-staged package ([69e4fbe](https://github.com/xeikit/starter-templates/commit/69e4fbe))
+- Add lint-staged package ([23228bb](https://github.com/xeikit/starter-templates/commit/23228bb))
+- Update dependencies ([e3634d4](https://github.com/xeikit/starter-templates/commit/e3634d4))
+- Update pnpm version to 10.26.1 ([26ce9f1](https://github.com/xeikit/starter-templates/commit/26ce9f1))
+
+### ❤️ Contributors
+
+- XeicuLy ([@XeicuLy](https://github.com/XeicuLy))
+
 ## v1.6.0
 
 [compare changes](https://github.com/xeikit/starter-templates/compare/v1.5.7...v1.6.0)
