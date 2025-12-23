@@ -21,13 +21,13 @@ jobs:
         working-directory: packages/nuxt4
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v4
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
       - name: Setup Node.js and install dependencies
         uses: ./.github/actions/node-install
 
       - name: Setup Biome CLI
-        uses: biomejs/setup-biome@f382a98e582959e6aaac8e5f8b17b31749018780
+        uses: biomejs/setup-biome@454fa0d884737805f48d7dc236c1761a0ac3cc13 # v2.6.0
 
       - name: Execute Biome
         run: pnpm biome:ci
@@ -54,13 +54,13 @@ jobs:
         working-directory: packages/tanstack-start
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v4
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
       - name: Setup Node.js and install dependencies
         uses: ./.github/actions/node-install
 
       - name: Setup Biome CLI
-        uses: biomejs/setup-biome@f382a98e582959e6aaac8e5f8b17b31749018780
+        uses: biomejs/setup-biome@454fa0d884737805f48d7dc236c1761a0ac3cc13 # v2.6.0
 
       - name: Execute Biome
         run: pnpm biome:ci
@@ -76,3 +76,28 @@ jobs:
 
       - name: Execute Build
         run: pnpm build
+
+  tanstack-hono-ci:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/tanstack-start-x-hono
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - name: Setup Node.js and install dependencies
+        uses: ./.github/actions/node-install
+
+      - name: Setup Biome CLI
+        uses: biomejs/setup-biome@454fa0d884737805f48d7dc236c1761a0ac3cc13 # v2.6.0
+
+      - name: Execute ESLint
+        run: pnpm eslint:ci
+
+      - name: Execute Biome
+        run: pnpm biome:ci
+
+      - name: Execute Prettier
+        run: pnpm prettier:ci
