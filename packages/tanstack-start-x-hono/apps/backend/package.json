@@ -8,6 +8,9 @@
     "typecheck": "pnpm run cf-typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@hono/swagger-ui": "0.5.3",
+    "@hono/zod-openapi": "1.2.0",
+    "consola": "3.4.2",
     "hono": "4.10.7"
   },
   "devDependencies": {
