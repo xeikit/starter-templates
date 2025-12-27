@@ -1,0 +1,72 @@
+{
+  "enabledMcpjsonServers": ["playwright", "context7", "serena"],
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(rg:*)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(pnpm typecheck:*)",
+      "Bash(pnpm run:*)",
+      "Bash(pnpm lint:fix:*)",
+      "WebFetch(domain:design.digital.go.jp)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs",
+      "mcp__serena__list_dir",
+      "mcp__serena__read_memory",
+      "mcp__serena__activate_project",
+      "mcp__serena__initial_instructions",
+      "mcp__serena__find_file",
+      "mcp__serena__read_file",
+      "mcp__serena__search_for_pattern",
+      "mcp__serena__check_onboarding_performed",
+      "mcp__serena__onboarding",
+      "mcp__serena__write_memory",
+      "mcp__serena__edit_memory",
+      "mcp__serena__think_about_collected_information",
+      "mcp__serena__think_about_task_adherence"
+    ],
+    "deny": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git reset:*)",
+      "Bash(git rebase:*)",
+      "Bash(git rm:*)",
+      "Bash(sudo:*)"
+    ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Glass.aiff"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Funk.aiff"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npm run lint:fix"
+          }
+        ]
+      }
+    ]
+  }
+}
